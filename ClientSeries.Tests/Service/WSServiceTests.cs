@@ -2,7 +2,7 @@
 using ClientSeries.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ClientSeries.Tests.Services;
+namespace ClientSeries.Tests.Service;
 
 [TestClass]
 public class WSServiceTests

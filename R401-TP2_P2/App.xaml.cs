@@ -26,6 +26,8 @@ namespace R401_TP2_P2
     /// </summary>
     public partial class App : Application
     {
+        public static Microsoft.UI.Xaml.Window? MainWindow { get; private set; }
+        
         private Window? _window;
 
         /// <summary>
@@ -44,6 +46,7 @@ namespace R401_TP2_P2
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             _window = new MainWindow();
+            MainWindow = _window;
             _window.Activate();
         }
     }

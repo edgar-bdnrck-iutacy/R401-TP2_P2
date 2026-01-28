@@ -1,0 +1,40 @@
+<Page
+    x:Class="ClientSeries.Views.AddSeriePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Padding="24" MaxWidth="520" HorizontalAlignment="Center">
+        <StackPanel Spacing="12">
+
+            <TextBlock Text="Ajout d’une série" FontSize="24" FontWeight="SemiBold" />
+
+            <TextBlock Text="Titre" />
+            <TextBox Text="{Binding SerieToAdd.Titre, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+
+            <TextBlock Text="Résumé" />
+            <TextBox Text="{Binding SerieToAdd.Resume, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                     AcceptsReturn="True"
+                     Height="120"
+                     TextWrapping="Wrap" />
+
+            <TextBlock Text="Nb saisons" />
+            <NumberBox Value="{Binding SerieToAdd.NbSaisons, Mode=TwoWay}" Minimum="0" />
+
+            <TextBlock Text="Nb épisodes" />
+            <NumberBox Value="{Binding SerieToAdd.NbEpisodes, Mode=TwoWay}" Minimum="0" />
+
+            <TextBlock Text="Année création" />
+            <NumberBox Value="{Binding SerieToAdd.AnneeCreation, Mode=TwoWay}" Minimum="0" />
+
+            <TextBlock Text="Chaîne" />
+            <TextBox Text="{Binding SerieToAdd.Chaine, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+
+            <Button Content="Ajouter"
+                    HorizontalAlignment="Center"
+                    Command="{Binding AddCommand}" />
+        </StackPanel>
+    </Grid>
+</Page>
