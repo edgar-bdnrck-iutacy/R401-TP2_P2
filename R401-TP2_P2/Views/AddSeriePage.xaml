@@ -12,7 +12,7 @@
             <TextBlock Text="Ajout d’une série" FontSize="24" FontWeight="SemiBold" />
 
             <TextBlock Text="Titre" />
-            <TextBox Text="{Binding SerieToAdd.Titre, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+            <TextBox Text="{Binding SerieToAdd.Titre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock Text="Résumé" />
             <TextBox Text="{Binding SerieToAdd.Resume, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"

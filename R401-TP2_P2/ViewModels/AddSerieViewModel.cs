@@ -16,7 +16,13 @@ public class AddSerieViewModel : ObservableObject
     public Serie SerieToAdd
     {
         get => _serieToAdd;
-        set => SetProperty(ref _serieToAdd, value);
+        set
+        {
+            if (SetProperty(ref _serieToAdd, value))
+            {
+                AddCommand.RaiseCanExecuteChanged();
+            }
+        }
     }
 
     public AsyncRelayCommand AddCommand { get; }
@@ -28,6 +34,8 @@ public class AddSerieViewModel : ObservableObject
 
         // IMPORTANT : éviter référence nulle (sujet TP2)
         SerieToAdd = new Serie();
+
+        SerieToAdd.PropertyChanged += (_, __) => AddCommand.RaiseCanExecuteChanged();
 
         AddCommand = new AsyncRelayCommand(AddAsync, CanAdd);
     }

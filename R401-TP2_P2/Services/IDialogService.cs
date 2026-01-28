@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace R401_TP2_P2.Services;
+namespace ClientSeries.Services;
 
 public interface IDialogService
 {
