@@ -16,13 +16,7 @@ public class AddSerieViewModel : ObservableObject
     public Serie SerieToAdd
     {
         get => _serieToAdd;
-        set
-        {
-            if (SetProperty(ref _serieToAdd, value))
-            {
-                AddCommand.RaiseCanExecuteChanged();
-            }
-        }
+        set => SetProperty(ref _serieToAdd, value);
     }
 
     public AsyncRelayCommand AddCommand { get; }
@@ -32,22 +26,27 @@ public class AddSerieViewModel : ObservableObject
         _ws = ws;
         _dialog = dialog;
 
-        // IMPORTANT : éviter référence nulle (sujet TP2)
+        // 1) Command d'abord (sinon elle est null quand SerieToAdd déclenche le setter)
+        AddCommand = new AsyncRelayCommand(AddAsync);
+
+        // 2) Ensuite seulement l'objet bindé
         SerieToAdd = new Serie();
 
-        SerieToAdd.PropertyChanged += (_, __) => AddCommand.RaiseCanExecuteChanged();
-
-        AddCommand = new AsyncRelayCommand(AddAsync, CanAdd);
-    }
-
-    private bool CanAdd()
-    {
-        // minimum vital : titre non vide
-        return !string.IsNullOrWhiteSpace(SerieToAdd.Titre);
+        // (optionnel) force l’état du bouton à jour au démarrage
+        AddCommand.RaiseCanExecuteChanged();
     }
 
     private async Task AddAsync()
     {
+        if (string.IsNullOrWhiteSpace(SerieToAdd.Titre))
+        {
+            await _dialog.ShowMessageAsync(
+                "Validation",
+                "Le titre est obligatoire pour ajouter une série."
+            );
+            return;
+        }
+
         try
         {
             // (Optionnel) normalisation soft
