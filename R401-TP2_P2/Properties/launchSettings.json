@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "R401-TP2_P2 (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "R401-TP2_P2 (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
