@@ -1,14 +1,9 @@
-﻿using ClientSeries.Models;
-using System.Collections.Generic;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using ClientSeries.Models;
-
 
 namespace ClientSeries.Services;
 
@@ -24,22 +19,16 @@ public class WSService : IService
         };
     }
 
-    // OPTION: pour tests, injection HttpClient
     public WSService(HttpClient httpClient)
     {
         _http = httpClient;
     }
 
     public async Task<List<Serie>?> GetAllSeriesAsync()
-    {
-        return await _http.GetFromJsonAsync<List<Serie>>("api/series");
-    }
+        => await _http.GetFromJsonAsync<List<Serie>>("api/series");
 
     public async Task<Serie?> GetSerieAsync(int idSerie)
-    {
-        var url = string.Concat("api/series/", idSerie);
-        return await _http.GetFromJsonAsync<Serie>(url);
-    }
+        => await _http.GetFromJsonAsync<Serie>(string.Concat("api/series/", idSerie));
 
     public async Task<bool> PostSerieAsync(Serie serie)
     {
@@ -49,15 +38,13 @@ public class WSService : IService
 
     public async Task<bool> PutSerieAsync(int idSerie, Serie serie)
     {
-        var url = string.Concat("api/series/", idSerie);
-        using var resp = await _http.PutAsJsonAsync(url, serie);
+        using var resp = await _http.PutAsJsonAsync(string.Concat("api/series/", idSerie), serie);
         return resp.IsSuccessStatusCode;
     }
 
     public async Task<bool> DeleteSerieAsync(int idSerie)
     {
-        var url = string.Concat("api/series/", idSerie);
-        using var resp = await _http.DeleteAsync(url);
+        using var resp = await _http.DeleteAsync(string.Concat("api/series/", idSerie));
         return resp.IsSuccessStatusCode;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using ClientSeries.Models;
 using ClientSeries.Services;
-using R401_TP2_P2.Services;
+using ClientSeries.ViewModels;
 using System;
 using System.Threading.Tasks;
 
@@ -11,7 +11,7 @@ public class AddSerieViewModel : ObservableObject
     private readonly IService _ws;
     private readonly IDialogService _dialog;
 
-    private Serie _serieToAdd;
+    private Serie _serieToAdd = new Serie();
 
     public Serie SerieToAdd
     {

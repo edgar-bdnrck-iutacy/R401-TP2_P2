@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace R401_TP2_P2.Services;
+namespace ClientSeries.ViewModels;
 
 public abstract class ObservableObject : INotifyPropertyChanged
 {
